@@ -1,9 +1,14 @@
 import React from 'react';
 import './App.css';
 
+import MTGsearch from './search/search';
+
 const App = () => {
   return(
-    <h1>Magic the Gathering Stuff</h1>
+    <div>
+      <h1>Magic the Gathering Stuff</h1>
+      <MTGsearch/>
+    </div>
   )
 }
 
