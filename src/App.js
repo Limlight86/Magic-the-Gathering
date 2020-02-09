@@ -1,13 +1,16 @@
 import React from 'react';
+import { AppContextProvider } from "./context/AppContext"
+import { SearchForm, SearchResultGrid } from './components/index';
 import './App.css';
-
-import MTGsearch from './search/search';
 
 const App = () => {
   return(
     <div>
       <h1>Magic the Gathering Stuff</h1>
-      <MTGsearch/>
+      <AppContextProvider>
+        <SearchForm/>
+        <SearchResultGrid/>
+      </AppContextProvider>
     </div>
   )
 }
