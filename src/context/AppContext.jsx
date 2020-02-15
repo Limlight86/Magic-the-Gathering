@@ -10,6 +10,7 @@ const AppContextProvider = ({ children }) => {
     axios.get(`https://api.scryfall.com/cards/search?order=name&q=${term}`)
     .then(({ data }) => {
        setApiResponse(data.data)
+       console.log(data.data)
     })
   }
 
