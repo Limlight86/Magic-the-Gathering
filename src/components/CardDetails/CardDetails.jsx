@@ -21,14 +21,9 @@ const CardDetails = (props) => {
 
   return(
     <div>
-    { card.id ? 
-    <div>
       <h1>{card.name}</h1>
-      <img src={card.image_uris ? card.image_uris.medium : "caca"} alt={card.name}/>
-    </div> : <h1>CACA</h1>
-
-}
-</div>
+      {card.image_uris && <img src={card.image_uris.normal} alt={card.name}/>}
+    </div>
 )}
 
 export default CardDetails
