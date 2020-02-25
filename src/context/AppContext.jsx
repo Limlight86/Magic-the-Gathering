@@ -16,7 +16,7 @@ const AppContextProvider = ({ children }) => {
 
   return(
     <AppContext.Provider 
-      value={{apiResponse, queryApi}}>
+      value={{apiResponse, setApiResponse, queryApi}}>
       { children }
     </AppContext.Provider>
   )

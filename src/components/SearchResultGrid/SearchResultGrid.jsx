@@ -8,9 +8,8 @@ const SearchResultGrid = () => {
 
   return (
     <div className={styles.resultsGrid}>
-        { apiResponse.length ? apiResponse.map((card) => {
+        { apiResponse.length && apiResponse.map((card) => {
           const { id, name, card_faces, image_uris} = card
-          
           return(
             <Link key={id} to={`/card/${id}`}>
               <div className={styles.cardContainer} > 
@@ -21,7 +20,7 @@ const SearchResultGrid = () => {
                 {name}
               </div>
             </Link>
-          )}) : <h1>Search for Cards Now!</h1>}
+          )})}
     </div>
   )
 }
