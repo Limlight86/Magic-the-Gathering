@@ -12,7 +12,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={SearchForm} />
           <Route path="/search" component={SearchForm} />
-          <Route path="/card/:id" component={(props) => <CardDetails {...props} />} />
+          <Route path="/card/:id" component={CardDetails} />
         </Switch>
       </AppContextProvider>
     </BrowserRouter>

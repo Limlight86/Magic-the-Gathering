@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react"
-import axios from "axios"
+import { useParams } from "react-router-dom"
 
-const CardDetails = (props) => {
-  const { id } = props.match.params
+const CardDetails = () => {
+  const { id } = useParams()
 
-  console.log(props)
   const [card, setCard] = useState({})
 
   const fetchCard = useCallback(async () => {
-    let { data } = await axios.get(`https://api.scryfall.com/cards/${id}`)
-    console.log(data)
-    setCard(data)
+    const response = await fetch(`/api/card/${id}`)
+    const result = await response.json()
+    console.log(result)
+    setCard(result)
   }, [id])
 
   useEffect(() => {
-    console.log("render")
     fetchCard()
   }, [fetchCard])
-
 
   return(
     <div>
