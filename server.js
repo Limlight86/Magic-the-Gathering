@@ -14,9 +14,15 @@ app.use(express.static('public'))
 const PORT = process.env.PORT || 8080
 
 app.get("/api/search/:term", async (request, response) => {
-  let {data} = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=${request.params.term}`)
-  console.log(data.data)
+  const { term } = request.params
+  const { data } = await axios.get(`https://api.scryfall.com/cards/search?order=name&q=${term}`)
   response.json(data.data)
+})
+
+app.get("/api/card/:id", async (request, response) => {
+  const { id } = request.params
+  const { data } = await axios.get(`https://api.scryfall.com/cards/${id}`)
+  response.json(data)
 })
 
 app.listen(PORT, () =>
