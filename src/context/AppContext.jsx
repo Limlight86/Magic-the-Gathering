@@ -7,7 +7,7 @@ const AppContextProvider = ({ children }) => {
 
   const queryApi = async (term) => {
     console.log(term)
-    const response = await fetch(`http://localhost:8080/api/search/${term}`)
+    const response = await fetch(`/api/search/${term}`)
     const result = await response.json()
     await setApiResponse(result)
     }
