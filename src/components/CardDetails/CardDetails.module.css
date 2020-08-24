@@ -1,11 +1,18 @@
-body{
-  padding: 1rem;
-  width: 100vw;
-}
-
-main{
+.cardDetailMain{
   display: flex;
   justify-content: space-around;
+}
+
+.cardDetailMain .sectionLeft{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardDetailMain .sectionRight{
+  flex: 1;
 }
 
 .castingCost{
@@ -17,4 +24,5 @@ main{
   width: 2rem;
   size: 2rem;
   margin: 0 0.1rem;
+  object-fit: contain;
 }
