@@ -1,0 +1,20 @@
+body{
+  padding: 1rem;
+  width: 100vw;
+}
+
+main{
+  display: flex;
+  justify-content: space-around;
+}
+
+.castingCost{
+  display: flex;
+  font-size: 2rem;
+}
+
+.castingCost img{
+  width: 2rem;
+  size: 2rem;
+  margin: 0 0.1rem;
+}
