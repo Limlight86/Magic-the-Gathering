@@ -8,6 +8,7 @@ To develop our fullstack JS skills and we are big nerds who like Magic the Gathe
 
 - Server: [Node.js](https://nodejs.org/dist/latest-v12.x/docs/api/),[Express](https://expressjs.com/)
 - Database/models: [PostgreSQL](http://www.postgresql.org/), [Sequelize](https://sequelize.org/v5/manual/migrations.html)
+- CMS: [Sanity.io](https://www.sanity.io/)
 
 ### API's Used
 
