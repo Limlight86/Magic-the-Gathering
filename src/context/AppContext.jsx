@@ -25,6 +25,12 @@ const AppContextProvider = ({ children }) => {
     }
   }
 
+  const discardDeckInProgress = () => {
+    window.confirm("Discard current deck?")
+    setDeckBuild([])
+    localStorage.removeItem("deckInProgress")
+  }
+
   useEffect(()=> {
     if(deckBuild.length > 0){
       localStorage.setItem("deckInProgress", JSON.stringify(deckBuild));
@@ -46,7 +52,15 @@ const AppContextProvider = ({ children }) => {
 
   return(
     <AppContext.Provider 
-      value={{apiResponse, setApiResponse, queryApi, deckBuild, setDeckBuild, addCardToDeck}}
+      value={{
+        apiResponse, 
+        setApiResponse, 
+        queryApi, 
+        deckBuild, 
+        setDeckBuild, 
+        addCardToDeck, 
+        discardDeckInProgress
+      }}
     >
       { children }
     </AppContext.Provider>
