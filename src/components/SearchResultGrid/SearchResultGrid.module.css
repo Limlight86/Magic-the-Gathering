@@ -12,3 +12,25 @@
   justify-content: center;
   align-items: center;
 }
+
+.imageContainer{
+  position: relative;
+}
+
+.imageContainer button{
+  position: absolute;
+  bottom: 0.5rem;
+  right: 4rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 10rem;
+  background-color: royalblue;
+  color: white;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.imageContainer:hover button{
+  opacity: 1;
+  pointer-events: all;
+}
