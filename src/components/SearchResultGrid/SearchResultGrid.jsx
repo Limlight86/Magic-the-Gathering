@@ -11,7 +11,7 @@ const SearchResultGrid = () => {
         { apiResponse.length && apiResponse.map((card) => {
           const { id, name, card_faces, image_uris} = card
           return(
-            <Link key={id} to={`/card/${id}`}>
+            <Link key={id} to={`/card/${id}`} target="_blank">
               <div className={styles.cardContainer} > 
                 <div className={styles.imageContainer}>
                   <img 
