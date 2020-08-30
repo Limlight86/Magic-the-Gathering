@@ -1,5 +1,16 @@
-const castingCostSort = castingCost => {
+let data = {}
 
+const fetchImages = async () => {
+  const response = await fetch(`/api/sanityData`)
+  const result = await response.json()
+  console.log(result)
+  data = result
+} 
+
+fetchImages()
+
+const castingCostSort = castingCost => {
+  const { allManaSymbolImage } = data.data
   const cleanedCastingCost = castingCost.replace(/{/gi, "").replace(/}/gi,"")
   
   const sortedCastingCost = cleanedCastingCost.split("").map(cost => {
@@ -27,19 +38,19 @@ const castingCostSort = castingCost => {
         imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/a/a5/7.svg/revision/latest?cb=20160121091702" ;
         break;
       case 'B':
-        imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/2/2f/B.svg/revision/latest?cb=20160125093424";
+        imageRoute = allManaSymbolImage[1].manaSymbol.asset.url;
         break;
       case 'W':
-        imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/8/8e/W.svg/revision/latest?cb=20160125094924";
+        imageRoute = allManaSymbolImage[2].manaSymbol.asset.url;
         break;
       case 'R':
-        imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/8/87/R.svg/revision/latest?cb=20160125094914";
+        imageRoute = allManaSymbolImage[3].manaSymbol.asset.url;
         break;
       case 'G':
-        imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/8/88/G.svg/revision/latest?cb=20160125094908";
+        imageRoute = allManaSymbolImage[0].manaSymbol.asset.url;
         break;
       case 'U':
-        imageRoute = "https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/9/9f/U.svg/revision/latest?cb=20160121092257";
+        imageRoute = allManaSymbolImage[4].manaSymbol.asset.url;
         break;
       default:
         imageRoute = null;
