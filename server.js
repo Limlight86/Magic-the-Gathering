@@ -1,3 +1,4 @@
+const {sanityUrl, sanityQuery} = require("./data/Sanity")
 const axios = require("axios")
 const express = require("express")
 const cors = require('cors')
@@ -22,6 +23,15 @@ app.get("/api/search/:term", async (request, response) => {
 app.get("/api/card/:id", async (request, response) => {
   const { id } = request.params
   const { data } = await axios.get(`https://api.scryfall.com/cards/${id}`)
+  response.json(data)
+})
+
+app.get("/api/sanityData", async (request, response) => {
+  const { data } = await axios({ 
+    method: 'post', 
+    url: sanityUrl, 
+    data: {query: sanityQuery }
+  });
   response.json(data)
 })
 
