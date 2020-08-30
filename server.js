@@ -26,7 +26,7 @@ app.get("/api/card/:id", async (request, response) => {
   response.json(data)
 })
 
-app.get("/api/sanityData", async (request, response) => {
+app.get("/api/sanityData", async (_request, response) => {
   const { data } = await axios({ 
     method: 'post', 
     url: sanityUrl, 
