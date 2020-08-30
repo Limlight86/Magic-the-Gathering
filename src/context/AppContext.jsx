@@ -40,10 +40,8 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     const getDeckInProgress = async () => {
       const deckInProgress = localStorage.getItem("deckInProgress")
-      console.log(deckInProgress)
       const result =  await JSON.parse(deckInProgress)
       if(typeof result === "object" && result !== null ){
-        console.log(result)
         setDeckBuild([...result])
       } 
     }
