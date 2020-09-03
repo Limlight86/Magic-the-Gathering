@@ -31,7 +31,7 @@ const CardDetails = () => {
         </section>
         <section className={styles.sectionRight}>
           <div className={styles.castingCost}>
-            Casting Cost:
+            <span>Casting Cost: &nbsp;</span>
             { card.card_faces ? castingCostSort(card.card_faces[0].mana_cost)?.map((cost, i) => (
               <img src={cost.src} alt={cost.alt} key={i} />))
               :
@@ -39,6 +39,7 @@ const CardDetails = () => {
                 <img src={cost.src} alt={cost.alt} key={i} />))
             }
           </div>
+          <h3>{card.type_line}</h3>
         </section>
       </main>
     </div>
