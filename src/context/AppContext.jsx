@@ -1,10 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom"
 
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const [apiResponse, setApiResponse] = useState([])
   const [deckBuild, setDeckBuild] = useState([])
+
+  const history = useHistory();
 
   const queryApi = async (term) => {
     const response = await fetch(`/api/search/${term}`)
@@ -29,6 +32,7 @@ const AppContextProvider = ({ children }) => {
     window.confirm("Discard current deck?")
     setDeckBuild([])
     localStorage.removeItem("deckInProgress")
+    history.push("/")
   }
 
   useEffect(()=> {
