@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { AppContext } from "../../context/AppContext"
+import { AppContext } from "../../context/"
 import { SearchResultGrid } from "../index"
 
 const SearchForm = () => {
