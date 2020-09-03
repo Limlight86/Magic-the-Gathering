@@ -1,17 +1,14 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext } from 'react';
 import { useQuery } from "@apollo/client"
 import {SANITY_DATA} from "../queries/SanityData"
 
 const SanityContext = createContext();
 
 const SanityContextProvider = ({ children }) => {
-  const [sanityData, setSanityData] = useState({})
-  const {loading, error, data} = useQuery(SANITY_DATA)
-
-  console.log(data)
+  const { data } = useQuery(SANITY_DATA)
 
   const castingCostSort = castingCost => {
-    const { allManaSymbolImage } = sanityData.data && sanityData.data
+    const { allManaSymbolImage } = data && data
     const cleanedCastingCost = castingCost.replace(/{/gi, "").replace(/}/gi," ")
     const sortedCastingCost = cleanedCastingCost.split(" ")
     .filter(cost => Boolean(cost)).map(cost => {
