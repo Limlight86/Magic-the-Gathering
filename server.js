@@ -26,15 +26,6 @@ app.get("/api/card/:id", async (request, response) => {
   response.json(data)
 })
 
-// app.get("/api/sanityData", async (_request, response) => {
-//   const { data } = await axios({ 
-//     method: 'post', 
-//     url: sanityUrl, 
-//     data: {query: sanityQuery }
-//   });
-//   response.json(data)
-// })
-
 app.listen(PORT, () =>
   console.log(`Server is up and running at port ${PORT} 🚀`)
 );
