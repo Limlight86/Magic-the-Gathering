@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback, useContext } from "react"
+import { SanityContext } from "../../context/"
 import { useParams } from "react-router-dom"
 import styles from "./CardDetails.module.css"
-import { fetchImages, castingCostSort } from "../../helpers/castingCostSort"
 
 const CardDetails = () => {
   const { id } = useParams()
+  const {castingCostSort} = useContext(SanityContext)
 
   const [card, setCard] = useState({})
 
   const fetchCard = useCallback(async () => {
-    await fetchImages()
     const response = await fetch(`/api/card/${id}`)
     const result = await response.json()
     console.log(result)
