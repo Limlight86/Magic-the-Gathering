@@ -8,9 +8,7 @@ const SanityContextProvider = ({ children }) => {
   const { data } = useQuery(SANITY_DATA)
 
   const castingCostSort = castingCost => {
-    console.log(castingCost)
     const cleanedCastingCost = castingCost.replace(/{/gi, "").replace(/}/gi," ")
-    console.log(cleanedCastingCost)
     const sortedCastingCost = cleanedCastingCost.split(" ")
     .filter(cost => Boolean(cost)).map(cost => {
         const manaCost = cost
