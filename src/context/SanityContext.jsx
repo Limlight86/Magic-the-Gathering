@@ -8,15 +8,14 @@ const SanityContextProvider = ({ children }) => {
   const { data } = useQuery(SANITY_DATA)
 
   const castingCostSort = castingCost => {
-    const { allManaSymbolImage } = data && data
     const cleanedCastingCost = castingCost.replace(/{/gi, "").replace(/}/gi," ")
     const sortedCastingCost = cleanedCastingCost.split(" ")
     .filter(cost => Boolean(cost)).map(cost => {
         const manaCost = cost
-        const symbol = allManaSymbolImage.filter(manaSymbol =>{
+        const symbol = data?.allManaSymbolImage.filter(manaSymbol =>{
           return manaCost === manaSymbol.manaName
         })
-        if(symbol.length) return {src:symbol[0].manaSymbol.asset.url, alt:cost}
+        if(symbol?.length) return {src:symbol[0].manaSymbol.asset.url, alt:cost}
         return{src:"N", alt:"N"}
       })
     return sortedCastingCost  
