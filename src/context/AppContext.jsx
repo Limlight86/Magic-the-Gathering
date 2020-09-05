@@ -6,6 +6,7 @@ const AppContext = createContext();
 const AppContextProvider = ({ children }) => {
   const [apiResponse, setApiResponse] = useState([])
   const [deckBuild, setDeckBuild] = useState([])
+  const [filteredCards, setFilteredCards] = useState([])
 
   const history = useHistory();
 
@@ -13,6 +14,7 @@ const AppContextProvider = ({ children }) => {
     const response = await fetch(`/api/search/${term}`)
     const result = await response.json()
     setApiResponse(result)
+    setFilteredCards(result)
     }
 
   const addCardToDeck = (e, card) => {
@@ -61,7 +63,9 @@ const AppContextProvider = ({ children }) => {
         deckBuild, 
         setDeckBuild, 
         addCardToDeck, 
-        discardDeckInProgress
+        discardDeckInProgress,
+        setFilteredCards,
+        filteredCards
       }}
     >
       { children }
