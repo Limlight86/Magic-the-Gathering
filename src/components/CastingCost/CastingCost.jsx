@@ -12,7 +12,7 @@ const CastingCost = ({ card }) => {
       <img src={cost.src} alt={cost.alt} key={i} />))
   } else {
     image = card.mana_cost && castingCostSort(card.mana_cost)?.map((cost, i) => (
-      cost.src ? 
+      cost?.src ? 
         <img src={cost.src} alt={cost.alt} key={i} /> 
         : 
         <span id={styles.split} key={i}>{"/".repeat(2)}</span>))
