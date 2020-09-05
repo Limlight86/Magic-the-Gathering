@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from "../../context/"
-import { SearchResultGrid } from "../index"
+import { SearchResultGrid, SearchFilter } from "../index"
 
 const SearchForm = () => {
   const [term, setTerm] = useState('');
-  const { apiResponse, setApiResponse, queryApi } = useContext(AppContext)
+  const { apiResponse, setApiResponse, queryApi, filteredCards } = useContext(AppContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,7 +21,12 @@ const SearchForm = () => {
         <input type="text" value={term} onChange={(e) => setTerm(e.target.value)} />
       </form>
       {
-        apiResponse.length ? <SearchResultGrid /> : <h1>Search for Cards now!</h1>
+        apiResponse.length ?(
+          <div>
+            <SearchFilter />
+            { filteredCards.length > 0 && <SearchResultGrid /> }
+          </div>
+        )  : <h1>Search for Cards now!</h1>
       }
     </div>
   )
