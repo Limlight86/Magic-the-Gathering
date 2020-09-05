@@ -4,11 +4,11 @@ import { AppContext } from "../../context/"
 import styles from "./SearchResultGrid.module.css"
 
 const SearchResultGrid = () => {
-  const { apiResponse, addCardToDeck } = useContext(AppContext)
+  const { filteredCards, addCardToDeck } = useContext(AppContext)
 
   return (
     <div className={styles.resultsGrid}>
-        { apiResponse.length && apiResponse.map((card) => {
+        { filteredCards.length && filteredCards.map((card) => {
           const { id, name, card_faces, image_uris} = card
           return(
             <Link key={id} to={`/card/${id}`} target="_blank">
