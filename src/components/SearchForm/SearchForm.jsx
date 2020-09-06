@@ -1,19 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AppContext } from "../../context/"
 import { SearchResultGrid, SearchFilter } from "../index"
 
 const SearchForm = () => {
   const [term, setTerm] = useState('');
-  const { apiResponse, setApiResponse, queryApi, filteredCards } = useContext(AppContext)
+  const { apiResponse, queryApi, filteredCards } = useContext(AppContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     queryApi(term)
   }
 
-  useEffect(()=>{
-    setApiResponse([])
-  }, [setApiResponse])
 
   return (
     <div>
