@@ -6,8 +6,18 @@ const SearchFilter = () => {
   const [filterValue, setFilterValue] = useState("all")
   const { apiResponse, setFilteredCards } = useContext(AppContext)
 
-  const cardTypes = [...new Set(apiResponse.map(card => card.type_line))]
-  const cmcs = [...new Set(apiResponse.map(card => card.cmc))]
+  const getCardTypes = (cards) => {
+    let cardTypes = cards.map(card =>{
+      if(card.type_line.includes("Creature")) return "Creature"
+      if(card.type_line.includes("Enchantment")) return "Enchantment"
+      if(card.type_line.includes("Planeswalker")) return "Planeswalker"
+      if(card.type_line.includes("Artifact")) return "Artifact"
+      return card.type_line
+    })
+    return[...new Set(cardTypes)].sort()
+  }
+
+  const cmcs = [...new Set(apiResponse.map(card => card.cmc).sort((a,b)=>a-b))]
 
   const filterCards = useCallback(() => {
     if(filterValue === "all"){
@@ -18,7 +28,7 @@ const SearchFilter = () => {
       const filteredCards = apiResponse.filter((card) => {
         if(card[filter]?.length === 0 && filterValue === " ") return (card[filter])
         if(filter === "cmc") return card[filter] === Number(filterValue)
-        return card[filter].includes(filterValue)
+        return card[filter]?.includes(filterValue)
     })
       setFilteredCards([...filteredCards])  
   }, [filterValue, apiResponse, filter, setFilteredCards])
@@ -37,9 +47,13 @@ const SearchFilter = () => {
     filterCards()
   },[filterValue, filterCards])
 
+  useEffect(()=>{
+    setFilter("all")
+  },[apiResponse])
+
   return(
   <div>
-    <select name="search-filter" id="search-filter" onChange={(e)=>setFilter(e.target.value)}>
+    <select value={filter} name="search-filter" id="search-filter" onChange={(e)=>setFilter(e.target.value)}>
       <option value="all">All</option>
       <option value="type_line">Card Type</option>
       <option value="colors">Color</option>
@@ -50,7 +64,7 @@ const SearchFilter = () => {
       <select name="search-filter" id="search-filter" onChange={(e)=>setFilterValue(e.target.value)}>
         <option value="all">All</option>
         {
-          cardTypes.map(type => <option key={type} value={type}>{type}</option>)
+          getCardTypes(apiResponse).map(type => <option key={type} value={type}>{type}</option>)
         }
       </select>
       ) : null
