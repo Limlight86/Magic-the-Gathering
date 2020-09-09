@@ -10,6 +10,7 @@ To develop our fullstack JS skills and we are big nerds who like Magic the Gathe
 - Database/models: [PostgreSQL](http://www.postgresql.org/), [Sequelize](https://sequelize.org/v5/manual/migrations.html)
 - CMS: [Sanity.io](https://www.sanity.io/)
 - [Apollo](https://www.apollographql.com/)
+- User Authentication: [Amazon Cognito](https://aws.amazon.com/cognito/)
 
 ### API's Used
 
