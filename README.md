@@ -11,6 +11,7 @@ To develop our fullstack JS skills and we are big nerds who like Magic the Gathe
 - CMS: [Sanity.io](https://www.sanity.io/)
 - [Apollo](https://www.apollographql.com/)
 - User Authentication: [Amazon Cognito](https://aws.amazon.com/cognito/)
+- [Styled Components](https://styled-components.com/)
 
 ### API's Used
 
