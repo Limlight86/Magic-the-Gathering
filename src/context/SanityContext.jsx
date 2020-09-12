@@ -24,7 +24,7 @@ const SanityContextProvider = ({ children }) => {
   
   return(
     <SanityContext.Provider 
-      value={{castingCostSort}}
+      value={{castingCostSort, data}}
     >
       { children }
     </SanityContext.Provider>

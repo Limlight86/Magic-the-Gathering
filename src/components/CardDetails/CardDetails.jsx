@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useCallback, useContext } from "react"
+import { SanityContext } from "../../context/"
 import { useParams } from "react-router-dom"
 import { CastingCost, CardImage } from "../"
 import styles from "./CardDetails.module.css"
 
 const CardDetails = () => {
   const { id } = useParams()
+  const { data } = useContext(SanityContext)
 
   const [card, setCard] = useState({})
 
@@ -29,7 +31,7 @@ const CardDetails = () => {
         <section className={styles.sectionRight}>
           <div className={styles.castingCost}>
             <span>Casting Cost: &nbsp;</span>
-            <CastingCost card={card} />
+            <CastingCost card={card} className={!data ? styles.hidden : ""}  />
           </div>
           <h3>{card.type_line}</h3>
         </section>
