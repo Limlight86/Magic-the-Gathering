@@ -4,7 +4,6 @@ import styles from "./CastingCost.module.css";
 
 const CastingCost = ({ card }) => {
   const { castingCostSort } = useContext(SanityContext);
-
   let image;
 
   if (card.card_faces && card.layout === "transform") {
