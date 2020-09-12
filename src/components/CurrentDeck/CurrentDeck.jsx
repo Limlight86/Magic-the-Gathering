@@ -8,6 +8,7 @@ import {
   CardTypeSection,
   CardList,
   CardLine,
+  CardCount,
   Cost,
 } from "./styled";
 import styles from "./CurrentDeck.module.css";
@@ -18,29 +19,32 @@ const CurrentDeck = () => {
 
   let cardTypes = getCardTypes(deckBuild).sort();
 
-  console.log(cardTypes);
-  console.log(deckBuild);
   return (
     <DeckWrapper className={!data ? styles.hidden : ""}>
       {cardTypes?.map((type, i) => {
-        const typePresent = deckBuild.filter((card) =>
+        let typePresent = deckBuild.filter((card) =>
           card.type_line.includes(type)
         );
+        if (type === "Instant" || type === "Sorecery" || type === "Enchantment" || type === "Planeswalker" ){
+          typePresent = typePresent.filter(card => !card.type_line.includes("Creature"))
+        }
         if (typePresent?.length) {
           return (
             <CardTypeSection key={i}>
               <h2>{type}</h2>
               <CardList>
                 {typePresent?.sort((a, b) => a.cmc > b.cmc).map((card) => (
-                  <Link to={`/card/${card.id}`} target="_blank">
                     <CardLine key={card.id}>
-                      <span>{card.count}</span>
-                      <span>{card.name}</span>
+                      <CardCount>{card.count}</CardCount>
+                      <Link to={`/card/${card.id}`} target="_blank">
+                        { (card.layout === "adventure" || card.layout === "transform") ? card.name.split("//")[0] : card.name}
+                      </Link>
                       <Cost>
-                        <CastingCost card={card} />
+                        <CastingCost card={
+                          card.layout === "adventure" ? {card_faces:[{mana_cost:card.card_faces[0].mana_cost}], layout:"transform"} : card
+                          } />
                       </Cost>
                     </CardLine>
-                  </Link>
                 ))}
               </CardList>
             </CardTypeSection>
