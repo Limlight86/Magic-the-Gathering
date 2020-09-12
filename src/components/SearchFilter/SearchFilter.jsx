@@ -1,21 +1,12 @@
 import React, { useState, useContext, useEffect, useCallback } from "react"
 import { AppContext } from "../../context/"
+import getCardTypes from "../../utils/GetCardTypes"
 
 const SearchFilter = () => {
   const [filter, setFilter] = useState("all")
   const [filterValue, setFilterValue] = useState("all")
   const { apiResponse, setFilteredCards } = useContext(AppContext)
 
-  const getCardTypes = (cards) => {
-    let cardTypes = cards.map(card =>{
-      if(card.type_line.includes("Creature")) return "Creature"
-      if(card.type_line.includes("Enchantment")) return "Enchantment"
-      if(card.type_line.includes("Planeswalker")) return "Planeswalker"
-      if(card.type_line.includes("Artifact")) return "Artifact"
-      return card.type_line
-    })
-    return[...new Set(cardTypes)].sort()
-  }
 
   const cmcs = [...new Set(apiResponse.map(card => card.cmc).sort((a,b)=>a-b))]
 
