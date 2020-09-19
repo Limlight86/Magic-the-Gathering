@@ -25,19 +25,22 @@ const CurrentDeck = () => {
         let typePresent = deckBuild.filter((card) =>
           card.type_line.includes(type)
         );
-        if (type === "Instant" || type === "Sorecery" || type === "Enchantment" || type === "Planeswalker" ){
+        if (type === "Instant" || type === "Sorcery" || type === "Enchantment" || type === "Planeswalker" || type === "Land" || type === "Artifact"){
           typePresent = typePresent.filter(card => !card.type_line.includes("Creature"))
+        }
+        if (type === "Land"){
+          typePresent = typePresent.filter(card => !card.type_line.includes("//"))
         }
         if (typePresent?.length) {
           return (
             <CardTypeSection key={i}>
               <h2>{type}</h2>
               <CardList>
-                {typePresent?.sort((a, b) => a.cmc > b.cmc).map((card) => (
+                {typePresent?.sort((a, b) => (a.cmc - b.cmc) - (a.name < b.name)).map((card) => (
                     <CardLine key={card.id}>
                       <CardCount>{card.count}</CardCount>
                       <Link to={`/card/${card.id}`} target="_blank">
-                        { (card.layout === "adventure" || card.layout === "transform") ? card.name.split("//")[0] : card.name}
+                        { (card.layout === "adventure" || card.layout === "transform" || card.layout === "modal_dfc") ? card.name.split("//")[0] : card.name}
                       </Link>
                       <Cost>
                         <CastingCost card={
