@@ -6,7 +6,7 @@ const CastingCost = ({ card }) => {
   const { castingCostSort } = useContext(SanityContext);
   let image;
 
-  if (card.card_faces && card.layout === "transform") {
+  if (card.card_faces && (card.layout === "transform" || card.layout === "modal_dfc")) {
     image =
       card.card_faces[0].mana_cost &&
       castingCostSort(card.card_faces[0].mana_cost)?.map((cost, i) =>
