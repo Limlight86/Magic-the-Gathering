@@ -1,7 +1,7 @@
 service: magic-the-gathering
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+app: magic-the-gathering
+org: limlight86
 
 frameworkVersion: '2'
 
