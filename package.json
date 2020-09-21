@@ -47,5 +47,10 @@
       "babel-plugin-styled-components"
     ]
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "serverless-bundle": "^3.1.0",
+    "serverless-offline": "^6.7.0",
+    "serverless-s3-sync": "^1.14.4"
+  }
 }
