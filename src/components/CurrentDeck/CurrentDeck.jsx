@@ -18,7 +18,7 @@ const CurrentDeck = () => {
   const { data } = useContext(SanityContext);
 
   let cardTypes = getCardTypes(deckBuild).sort();
-
+  
   return (
     <DeckWrapper className={!data ? styles.hidden : ""}>
       {cardTypes?.map((type, i) => {
