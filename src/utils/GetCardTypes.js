@@ -4,9 +4,9 @@ const getCardTypes = (cards) => {
     if (card.type_line.includes("Enchantment")) return "Enchantment";
     if (card.type_line.includes("Planeswalker")) return "Planeswalker";
     if (card.type_line.includes("Artifact")) return "Artifact";
-    if (card.type_line.includes("Land")) return "Land";
     if (card.type_line.includes("Instant")) return "Instant";
     if (card.type_line.includes("Sorcery")) return "Sorcery";
+    if (card.type_line.includes("Land")) return "Land";
     return card.type_line;
   });
   return [...new Set(cardTypes)].sort();
