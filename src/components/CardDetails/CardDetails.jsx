@@ -11,7 +11,7 @@ const CardDetails = () => {
   const [card, setCard] = useState({})
 
   const fetchCard = useCallback(async () => {
-    const response = await fetch(`/api/card/${id}`)
+    const response = await fetch(`https://api.scryfall.com/cards/${id}`)
     const result = await response.json()
     console.log(result)
     setCard(result)

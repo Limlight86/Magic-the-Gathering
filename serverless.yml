@@ -32,7 +32,7 @@ custom:
   siteName: ${self:service}-${self:provider.stage}
   s3Sync:
     - bucketName: ${self:custom.siteName}
-      localDir: public
+      localDir: build
   serverless-offline:
     httpPort: 4000
 

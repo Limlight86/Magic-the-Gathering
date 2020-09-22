@@ -11,10 +11,10 @@ const AppContextProvider = ({ children }) => {
   const history = useHistory();
 
   const queryApi = async (term) => {
-    const response = await fetch(`/api/search/${term}`)
-    const result = await response.json()
-    setApiResponse(result)
-    setFilteredCards(result)
+    const response = await fetch(`https://api.scryfall.com/cards/search?order=name&q=${term}`)
+    const { data } = await response.json()
+    setApiResponse(data)
+    setFilteredCards(data)
     }
 
   const addCardToDeck = (e, card) => {
