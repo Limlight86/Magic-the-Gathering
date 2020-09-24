@@ -1,23 +1,28 @@
-import React from "react"
+import React from "react";
 
 const CardImage = ({ card }) => {
-  let image
+  let image;
 
-  if(card.card_faces && card.layout !== "split" && card.layout !== "adventure"){
-    image = 
+  if (
+    card.card_faces &&
+    card.layout !== "split" &&
+    card.layout !== "adventure" &&
+    card.layout !== "flip"
+  ) {
+    image = (
       <>
-        <img src={card.card_faces[0].image_uris?.normal} alt={card.name}/>
-        <img src={card.card_faces[1].image_uris?.normal} alt={card.name}/>
+        <img src={card.card_faces[0].image_uris?.normal} alt={card.name} />
+        <img src={card.card_faces[1].image_uris?.normal} alt={card.name} />
       </>
+    );
   } else {
-    image = 
+    image = (
       <>
-        <img src={card.image_uris?.normal} alt={card.name}/>
+        <img src={card.image_uris?.normal} alt={card.name} />
       </>
+    );
   }
-  return(
-      image
-  )
-}
+  return image;
+};
 
-export default CardImage
+export default CardImage;
