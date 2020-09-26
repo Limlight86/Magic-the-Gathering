@@ -2,7 +2,7 @@ service: magic-the-gathering
 app: magic-the-gathering
 org: limlight86
 
-frameworkVersion: '2'
+frameworkVersion: "2"
 
 provider:
   name: aws
@@ -38,7 +38,7 @@ custom:
 
 package:
   individually: true
- 
+
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -142,7 +142,18 @@ resources:
         UserPoolId:
           Ref: CognitoUserPool
 
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+outputs:
+  region: ${self:provider.region}
+  gatewayUrl:
+    Fn::Join:
+      [
+        "",
+        [
+          "https://",
+          { "Ref": "ApiGatewayRestApi" },
+          ".execute-api.${self:provider.region}.amazonaws.com/${self:provider.stage}/graphql",
+        ],
+      ]
+  userPool: !Ref CognitoUserPool
+  userPoolClient: !Ref CognitoUserPoolClient
+  siteUrl: http://${self:custom.siteName}.s3-website-${self:provider.region}.amazonaws.com
