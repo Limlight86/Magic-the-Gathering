@@ -27,8 +27,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node server.js",
-    "dev": "concurrently \"react-scripts start\" \"node server.js\"",
-    "sls:dev": "concurrently \"react-scripts start && node server.js\" \"AWS_PROFILE=personal sls offline\"",
+    "dev": "concurrently \"react-scripts start\" \"USER_POOL=`sls output get --name userPool --stage dev` REGION=`sls output get --name region --stage dev` GATEWAY_URL=http://localhost:4000/dev/graphql USER_POOL_CLIENT=`sls output get --name userPoolClient --stage dev`\" \"AWS_PROFILE=personal sls offline\"",
+    "sls:dev": "concurrently \"react-scripts start\" \"USER_POOL=`sls output get --name userPool --stage dev` REGION=`sls output get --name region --stage dev` GATEWAY_URL=`sls output get --name gatewayUrl --stage dev` USER_POOL_CLIENT=`sls output get --name userPoolClient --stage dev`\" \"AWS_PROFILE=personal sls offline\"",
     "deploy:dev": "AWS_PROFILE=personal sls deploy --stage dev"
   },
   "eslintConfig": {
