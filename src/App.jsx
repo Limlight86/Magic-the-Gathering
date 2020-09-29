@@ -2,7 +2,7 @@ import React from 'react';
 import { ApolloProvider } from "@apollo/client"
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AppContextProvider, SanityContextProvider } from "./context/"
-import { SearchForm, Navbar, CardDetails, CurrentDeck } from './components/index';
+import { SearchForm, Navbar, CardDetails, CurrentDeck, UserDecks } from './components/index';
 import client from "./data/ApolloClient"
 import './App.css';
 
@@ -18,6 +18,7 @@ const App = () => {
             <Route path="/search" component={SearchForm} />
             <Route path="/card/:id" component={CardDetails} />
             <Route path="/currentDeck" component={CurrentDeck} />
+            <Route path="/userdecks" component={UserDecks} />
           </Switch>
         </AppContextProvider>
         </SanityContextProvider>
