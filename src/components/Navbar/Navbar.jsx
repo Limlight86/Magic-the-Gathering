@@ -10,7 +10,7 @@ const Navbar = ()=>{
   return(
     <nav>
       <Link to="/search">Search</Link>
-      {user ? user?.email : "Log in"}
+      {user ? user?.challengeParam?.userAttributes?.email : "Log in"}
       {
         deckBuild.length > 0 ? 
         <div className={styles.currentDeckNav}>
