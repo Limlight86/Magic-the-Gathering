@@ -7,3 +7,4 @@ export { default as CastingCost } from "./CastingCost/CastingCost";
 export { default as CardImage } from "./CardImage/CardImage";
 export { default as SearchFilter } from "./SearchFilter/SearchFilter";
 export { default as UserDecks } from "./UserDecks/UserDecks";
+export { default as Authorization } from "./Authorization/Authorization";
