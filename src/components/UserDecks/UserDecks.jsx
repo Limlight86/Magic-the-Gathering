@@ -1,12 +1,19 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import client, { USER_DECKS_QUERY } from "../../data/Decks";
+import React, { useContext } from "react";
+import { AppContext } from "../../context";
 
 const UserDecks = () => {
-  const { data } = useQuery(USER_DECKS_QUERY, { client })
-  console.log(data)
+  const { decks } = useContext(AppContext);
+  console.log(decks)
 
-  return <h1>Decks Page</h1>;
+  return (
+    <div>
+      <ul>
+        {decks?.decks?.map((deck) => {
+          return <li key={deck.id}>{deck.deckName}</li>;
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export default UserDecks;
