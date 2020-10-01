@@ -12,6 +12,7 @@ import {
   CardDetails,
   CurrentDeck,
   UserDecks,
+  Authorization,
 } from "./components/index";
 import client from "./data/ApolloClient";
 import "./App.css";
@@ -24,13 +25,15 @@ const App = () => {
           <AuthContextProvider>
             <AppContextProvider>
               <Navbar />
-              <Switch>
-                <Route exact path="/" component={SearchForm} />
-                <Route path="/search" component={SearchForm} />
-                <Route path="/card/:id" component={CardDetails} />
-                <Route path="/currentDeck" component={CurrentDeck} />
-                <Route path="/userdecks" component={UserDecks} />
-              </Switch>
+              <Authorization>
+                <Switch>
+                  <Route exact path="/" component={SearchForm} />
+                  <Route path="/search" component={SearchForm} />
+                  <Route path="/card/:id" component={CardDetails} />
+                  <Route path="/currentDeck" component={CurrentDeck} />
+                  <Route path="/userdecks" component={UserDecks} />
+                </Switch>
+              </Authorization>
             </AppContextProvider>
           </AuthContextProvider>
         </SanityContextProvider>
