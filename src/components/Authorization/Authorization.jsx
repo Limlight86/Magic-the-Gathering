@@ -2,17 +2,18 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context";
 
 const Authorization = ({ children }) => {
-  const { user, signIn } = useContext(AuthContext);
+  const { user, signIn, errorMessage, loading } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    signIn(email, password)
+    signIn(email, password);
   };
 
+  if (loading) return <h1>Loading...</h1>;
   if (user) {
-    return  children ;
+    return children;
   } else {
     return (
       <section>
@@ -39,6 +40,7 @@ const Authorization = ({ children }) => {
           </div>
           <button type="submit">Log in</button>
         </form>
+        <p>{errorMessage}</p>
       </section>
     );
   }
