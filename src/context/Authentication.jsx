@@ -8,6 +8,22 @@ const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const signUp = async (email, password, nickname) => {
+    try {
+      await Auth.signUp({
+        username: email,
+        password,
+        attributes: { nickname }
+      });
+      const code = prompt("Input your confirmation code.");
+      await Auth.confirmSignUp(email, code);
+      await signIn(email, password);
+    } catch (error) {
+      console.log(error.message);
+      setErrorMessage(error.message);
+    }
+  };
+
   const signIn = async (email, password) => {
     try {
       setLoading(true);
@@ -23,27 +39,43 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const signOut = async () => {
+    setLoading(true);
+    await Auth.signOut();
+    setUser(null);
+    setLoading(false);
+  };
+
   const getCurrentUser = async () => {
     try {
       setLoading(true);
       const signedInUser = await Auth.currentAuthenticatedUser();
+      console.log(signedInUser);
       setUser(signedInUser);
       setLoading(false);
     } catch (error) {
       console.log(error);
-      setErrorMessage(error.message);
+      setErrorMessage(error);
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log("hi")
+    console.log("hi");
     getCurrentUser();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ user, signIn, errorMessage, loading, setLoading }}
+      value={{
+        user,
+        signIn,
+        signOut,
+        signUp,
+        errorMessage,
+        loading,
+        setLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>
