@@ -8,6 +8,7 @@ const AWS = require("aws-sdk");
 const { v4: uuid } = require("uuid");
 
 const DB = new AWS.DynamoDB.DocumentClient();
+const IdentityProvider = new AWS.CognitoIdentityServiceProvider();
 const TableName = process.env.tableName;
 
 const typeDefs = gql`
@@ -30,11 +31,11 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    decks: async () => {
+    decks: async (_, __, { userId }) => {
       const { Items } = await DB.query({
         TableName,
         KeyConditionExpression: "userId = :userId",
-        ExpressionAttributeValues: { ":userId": "testUser" },
+        ExpressionAttributeValues: { ":userId": userId },
         ScanIndexForward: false,
       }).promise();
       return Items;
@@ -42,9 +43,9 @@ const resolvers = {
     hello: () => "World!",
   },
   Mutation: {
-    createDeck: async (_, { deckName, deckContents }) => {
+    createDeck: async (_, { deckName, deckContents }, { userId }) => {
       const Item = {
-        userId: "testUser",
+        userId,
         id: Date.now() + uuid(),
         deckName,
         deckContents,
@@ -58,6 +59,18 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: async ({ event }) => {
+    try {
+      const AccessToken = event.headers.Authorization;
+      const { Username } = await IdentityProvider.getUser({
+        AccessToken,
+      }).promise();
+      return { userId: Username };
+    } catch (error) {
+      console.log(error.message);
+      return { userId: null };
+    }
+  },
   playground: {
     endpoint: `/${process.env.stage}/graphql`,
   },
