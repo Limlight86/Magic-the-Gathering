@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import Auth from "../data/Auth";
+import client from "../data/Decks";
 
 const AuthContext = createContext();
 
@@ -13,7 +14,7 @@ const AuthContextProvider = ({ children }) => {
       await Auth.signUp({
         username: email,
         password,
-        attributes: { nickname }
+        attributes: { nickname },
       });
       const code = prompt("Input your confirmation code.");
       await Auth.confirmSignUp(email, code);
@@ -42,6 +43,7 @@ const AuthContextProvider = ({ children }) => {
   const signOut = async () => {
     setLoading(true);
     await Auth.signOut();
+    client.cache.reset();
     setUser(null);
     setLoading(false);
   };
