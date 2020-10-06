@@ -31,7 +31,7 @@ const CurrentDeck = () => {
         <input
           type="text"
           id="deckName"
-          value={currentDeckName}
+          value={currentDeckName || ""}
           onChange={(e) => {
             setCurrentDeckName(e.target.value);
             localStorage.setItem("currentDeckName", e.target.value);

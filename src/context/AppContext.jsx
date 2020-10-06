@@ -15,7 +15,8 @@ const AppContextProvider = ({ children }) => {
   const [createDeck] = useMutation(SAVE_DECK_MUTATION, {
     client,
     update(cache, mutationResult) {
-      const { decks } = cache.readQuery({ query: USER_DECKS_QUERY });
+      const { decks = [] } = cache.readQuery({ query: USER_DECKS_QUERY });
+      console.log(decks)
       const newDeck = mutationResult.data.createDeck;
       cache.writeQuery({
         query: USER_DECKS_QUERY,
@@ -76,6 +77,8 @@ const AppContextProvider = ({ children }) => {
     });
     localStorage.removeItem("deckInProgress");
     localStorage.removeItem("currentDeckName");
+    setDeckBuild([])
+    setCurrentDeckName("")
     history.push("/userdecks");
   };
 
