@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "apollo-server-lambda": "^2.17.0",
     "aws-amplify": "^3.3.2",
-    "aws-sdk": "^2.757.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.19.2",
     "babel-plugin-styled-components": "^1.11.1",
     "cors": "^2.8.5",
